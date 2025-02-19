@@ -1,0 +1,194 @@
+/* Global Styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #1e1e1e, #383838);
+  color: #e0e0e0;
+}
+
+/* App Container */
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px;
+  position: relative;
+  min-height: 100vh;
+  /* Reserve space for the sidebar on larger screens */
+  padding-right: 300px;
+}
+
+/* Controls Section */
+.controls {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.controls button {
+  padding: 12px 25px;
+  background: linear-gradient(145deg, #3a3a3a, #2a2a2a);
+  border: none;
+  border-radius: 10px;
+  color: #f5f5f5;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 5px 5px 10px #1a1a1a, -5px -5px 10px #4a4a4a;
+}
+
+.controls button:hover {
+  transform: scale(1.05);
+  box-shadow: 5px 5px 20px #1a1a1a, -5px -5px 20px #4a4a4a;
+}
+
+/* Game Info (if used inside controls) */
+.game-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.game-info h3 {
+  font-size: 24px;
+  margin: 0 0 10px;
+  color: #ffce00;
+}
+
+.captured {
+  margin-top: 10px;
+}
+
+.captured h4 {
+  margin: 0 0 5px;
+  font-size: 18px;
+  color: #ffce00;
+}
+
+.captured-pieces {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 20px;
+}
+
+/* Chessboard Container */
+.board-container {
+  margin-bottom: 30px;
+  border: 2px solid #ffce00;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 25px rgba(255, 206, 0, 0.7);
+}
+
+/* Move History Sidebar */
+.history {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 260px;
+  max-height: calc(100vh - 40px);
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  padding: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.37);
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.history h3 {
+  font-size: 22px;
+  margin-top: 0;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ffce00;
+  padding-bottom: 8px;
+  color: #ffce00;
+}
+
+.move-list {
+  /* Sidebar already handles scrolling; no need for extra max-height */
+}
+
+.move {
+  padding: 10px;
+  font-size: 18px;
+  border-bottom: 1px dashed #ffce00;
+}
+
+.move:last-child {
+  border-bottom: none;
+}
+
+/* Custom Scrollbar Styling */
+.history::-webkit-scrollbar {
+  width: 8px;
+}
+
+.history::-webkit-scrollbar-track {
+  background: #2a2a2a;
+  border-radius: 4px;
+}
+
+.history::-webkit-scrollbar-thumb {
+  background: #ffce00;
+  border-radius: 4px;
+}
+
+/* Responsive Styles */
+@media (max-width: 800px) {
+  .app {
+    /* Remove the sidebar space on smaller screens */
+    padding-right: 20px;
+  }
+  .history {
+    /* Switch to a static layout below the board */
+    position: static;
+    width: 100%;
+    max-height: 300px;
+    margin-top: 20px;
+  }
+  .controls {
+    flex-direction: column;
+    gap: 15px;
+  }
+}
+/* Game Over Overlay */
+.game-over-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 1s ease-out forwards;
+  z-index: 2000;
+}
+
+/* Game Over Animation Text */
+.game-over-animation h2 {
+  color: #ffce00;
+  font-size: 48px;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+  animation: popIn 1s ease-out forwards;
+}
+
+/* Keyframes for the fadeIn overlay */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Keyframes for the popIn text effect */
+@keyframes popIn {
+  0% { transform: scale(0); }
+  70% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
